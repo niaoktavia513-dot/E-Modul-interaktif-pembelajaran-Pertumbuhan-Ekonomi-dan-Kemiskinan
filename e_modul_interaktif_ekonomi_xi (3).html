@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Modul Interaktif Ekonomi XI - Pertumbuhan Ekonomi & Kemiskinan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Plus Jakarta Sans & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slatebg: '#f0f4f8',
+                        navy: {
+                            700: '#1E3A8A',
+                            800: '#1B365D',
+                            900: '#0F2038',
+                        },
+                        royal: {
+                            500: '#0066CC',
+                            600: '#0056B3',
+                            700: '#004085',
+                        },
+                        gold: {
+                            400: '#FBBF24',
+                            500: '#F59E0B',
+                            600: '#D97706',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f0f4f8;
+            color: #1e293b;
+        }
+        .soft-card {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 15px -3px rgba(15, 23, 42, 0.05), 0 2px 6px -2px rgba(15, 23, 42, 0.03);
+            border-radius: 1rem;
+        }
+        .tree-line-vertical {
+            width: 3px;
+            height: 24px;
+            background-color: #0056B3;
+            margin: 0 auto;
+        }
+        .formula-box {
+            background: linear-gradient(135deg, #0F2038 0%, #1B365D 100%);
+            border-left: 5px solid #F59E0B;
+            color: #ffffff;
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px -5px rgba(0, 86, 179, 0.15);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-gold-500 selection:text-navy-900">
+
+    <!-- NAVIGATION HEADER -->
+    <header class="sticky top-0 z-50 bg-navy-900 text-white shadow-lg border-b border-navy-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="showTab('cover')">
+                <div class="w-9 h-9 bg-royal-600 rounded-xl flex items-center justify-center text-amber-400 font-black text-lg shadow">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <div>
+                    <h1 class="text-sm sm:text-base font-extrabold text-white tracking-wide leading-none">E-MODUL EKONOMI</h1>
+                    <p class="text-[11px] text-amber-400 font-semibold mt-0.5">Pertumbuhan Ekonomi & Kemiskinan · SMA/MA XI</p>
+                </div>
+            </div>
+
+            <button id="mobileMenuToggle" class="lg:hidden p-2 rounded-lg bg-navy-800 text-white hover:bg-royal-600 transition">
+                <i class="fa-solid fa-bars text-lg"></i>
+            </button>
+
+            <nav class="hidden lg:flex items-center space-x-1 text-xs font-semibold">
+                <button onclick="showTab('cover')" class="nav-btn px-3 py-2 rounded-lg hover:bg-royal-600 transition" id="btn-cover"><i class="fa-solid fa-house mr-1"></i> Cover</button>
+                <button onclick="showTab('petunjuk')" class="nav-btn px-3 py-2 rounded-lg hover:bg-royal-600 transition" id="btn-petunjuk"><i class="fa-solid fa-compass mr-1"></i> Petunjuk</button>
+                <button onclick="showTab('peta-konsep')" class="nav-btn px-3 py-2 rounded-lg hover:bg-royal-600 transition" id="btn-peta-konsep"><i class="fa-solid fa-sitemap mr-1"></i> Peta Konsep</button>
+                <button onclick="showTab('pertemuan1')" class="nav-btn px-3 py-2 rounded-lg hover:bg-royal-600 transition" id="btn-pertemuan1">Pertemuan 1</button>
+                <button onclick="showTab('pertemuan2')" class="nav-btn px-3 py-2 rounded-lg hover:bg-royal-600 transition" id="btn-pertemuan2">Pertemuan 2</button>
+                <button onclick="showTab('pertemuan3')" class="nav-btn px-3 py-2 rounded-lg hover:bg-royal-600 transition" id="btn-pertemuan3">Pertemuan 3</button>
+                <button onclick="showTab('rangkuman')" class="nav-btn px-3 py-2 rounded-lg hover:bg-royal-600 transition" id="btn-rangkuman"><i class="fa-solid fa-list-check mr-1"></i> Rangkuman</button>
+                <button onclick="showTab('evaluasi')" class="nav-btn px-3.5 py-2 rounded-lg bg-gold-500 text-navy-900 hover:bg-gold-400 font-extrabold shadow transition" id="btn-evaluasi"><i class="fa-solid fa-pen-to-square mr-1"></i> Evaluasi</button>
+                <button onclick="showTab('refleksi')" class="nav-btn px-3 py-2 rounded-lg hover:bg-royal-600 transition" id="btn-refleksi"><i class="fa-solid fa-user-check mr-1"></i> Refleksi</button>
+                <button onclick="showTab('glosarium')" class="nav-btn px-3 py-2 rounded-lg hover:bg-royal-600 transition" id="btn-glosarium"><i class="fa-solid fa-book mr-1"></i> Glosarium</button>
+                <button onclick="showTab('pustaka')" class="nav-btn px-3 py-2 rounded-lg hover:bg-royal-600 transition" id="btn-pustaka"><i class="fa-solid fa-bookmark mr-1"></i> Pustaka</button>
+            </nav>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-navy-900 border-t border-navy-800 px-4 py-3 space-y-1.5 text-xs font-semibold">
+            <button onclick="showTab('cover')" class="w-full text-left p-2 rounded hover:bg-royal-600 block"><i class="fa-solid fa-house mr-2"></i> Cover & Identitas</button>
+            <button onclick="showTab('petunjuk')" class="w-full text-left p-2 rounded hover:bg-royal-600 block"><i class="fa-solid fa-compass mr-2"></i> Petunjuk Penggunaan</button>
+            <button onclick="showTab('peta-konsep')" class="w-full text-left p-2 rounded hover:bg-royal-600 block"><i class="fa-solid fa-sitemap mr-2"></i> Peta Konsep</button>
+            <button onclick="showTab('pertemuan1')" class="w-full text-left p-2 rounded hover:bg-royal-600 block"><i class="fa-solid fa-book-open mr-2"></i> Pertemuan 1: Pendapatan Nasional</button>
+            <button onclick="showTab('pertemuan2')" class="w-full text-left p-2 rounded hover:bg-royal-600 block"><i class="fa-solid fa-chart-line mr-2"></i> Pertemuan 2: Pertumbuhan & Ketimpangan</button>
+            <button onclick="showTab('pertemuan3')" class="w-full text-left p-2 rounded hover:bg-royal-600 block"><i class="fa-solid fa-mobile-screen mr-2"></i> Pertemuan 3: Kemiskinan & Digital</button>
+            <button onclick="showTab('rangkuman')" class="w-full text-left p-2 rounded hover:bg-royal-600 block"><i class="fa-solid fa-list-check mr-2"></i> Rangkuman Modul</button>
+            <button onclick="showTab('evaluasi')" class="w-full text-left p-2 rounded bg-gold-500 text-navy-900 font-extrabold block"><i class="fa-solid fa-pen-to-square mr-2"></i> Evaluasi Modul</button>
+            <button onclick="showTab('refleksi')" class="w-full text-left p-2 rounded hover:bg-royal-600 block"><i class="fa-solid fa-user-check mr-2"></i> Refleksi</button>
+            <button onclick="showTab('glosarium')" class="w-full text-left p-2 rounded hover:bg-royal-600 block"><i class="fa-solid fa-book mr-2"></i> Glosarium</button>
+            <button onclick="showTab('pustaka')" class="w-full text-left p-2 rounded hover:bg-royal-600 block"><i class="fa-solid fa-bookmark mr-2"></i> Daftar Pustaka</button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- ================= TAB 1: COVER & IDENTITAS ================= -->
+        <section id="tab-cover" class="tab-content space-y-8">
+            <div class="relative bg-navy-900 text-white rounded-3xl p-6 sm:p-10 border border-royal-600 shadow-2xl overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <!-- Left Banner -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="space-y-2">
+                            <span class="bg-royal-600 text-amber-300 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-widest inline-block">E-MODUL INTERAKTIF EKONOMI</span>
+                            <h1 class="text-3xl sm:text-5xl font-black text-white leading-tight">
+                                Pertumbuhan Ekonomi dan Kemiskinan
+                            </h1>
+                            <p class="text-xs sm:text-base text-blue-100 leading-relaxed pt-2">
+                                Menganalisis Pertumbuhan Ekonomi, Ketimpangan Kesenjangan Pendapatan, Kemiskinan, serta Peran Ekonomi Digital dan Fintech di Indonesia.
+                            </p>
+                        </div>
+
+                        <!-- Authors & Identity Box -->
+                        <div class="bg-navy-800/90 rounded-2xl p-5 border border-royal-500/50 space-y-3 shadow-md">
+                            <div class="flex items-center space-x-2 text-amber-400 font-extrabold text-xs tracking-wider uppercase">
+                                <i class="fa-solid fa-users text-sm"></i>
+                                <span>Tim Penyusun E-Modul</span>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-bold text-white">
+                                <div class="bg-navy-900/80 p-3 rounded-xl border border-slate-700 text-center">
+                                    <i class="fa-solid fa-user-graduate text-amber-400 block mb-1"></i>
+                                    NIA OKTAVIA
+                                </div>
+                                <div class="bg-navy-900/80 p-3 rounded-xl border border-slate-700 text-center">
+                                    <i class="fa-solid fa-user-graduate text-amber-400 block mb-1"></i>
+                                    WINDHY FEBRIAN PUTRI
+                                </div>
+                                <div class="bg-navy-900/80 p-3 rounded-xl border border-slate-700 text-center">
+                                    <i class="fa-solid fa-user-graduate text-amber-400 block mb-1"></i>
+                                    INDI KHOFIFAH H.
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 border-t border-slate-700/60 text-[11px] text-slate-300">
+                                <div><span class="text-slate-400 block">Mata Pelajaran:</span> <strong class="text-white">Ekonomi</strong></div>
+                                <div><span class="text-slate-400 block">Kelas / Fase:</span> <strong class="text-white">XI / Fase F</strong></div>
+                                <div><span class="text-slate-400 block">Satuan Pendidikan:</span> <strong class="text-white">SMA / MA</strong></div>
+                                <div><span class="text-slate-400 block">Model Belajar:</span> <strong class="text-amber-400">PBL (Problem Based)</strong></div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="flex flex-wrap gap-3 pt-2">
+                            <button onclick="showTab('pertemuan1')" class="bg-gold-500 hover:bg-gold-400 text-navy-900 font-extrabold px-6 py-3.5 rounded-xl shadow-lg transition flex items-center space-x-2 text-xs uppercase tracking-wide">
+                                <span>Mulai Belajar Pertemuan 1</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                            <button onclick="showTab('petunjuk')" class="bg-royal-600 hover:bg-royal-700 text-white font-bold px-6 py-3.5 rounded-xl transition flex items-center space-x-2 text-xs">
+                                <i class="fa-solid fa-circle-info"></i>
+                                <span>Petunjuk Penggunaan</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Right Visual Showcase: 3 Real Photos -->
+                    <div class="lg:col-span-5 space-y-4">
+                        <div class="text-xs font-extrabold text-amber-400 tracking-wider uppercase text-center lg:text-left flex items-center justify-center lg:justify-start space-x-2">
+                            <i class="fa-solid fa-images"></i>
+                            <span>Tiga Gambar Fokus Utama Pembelajaran</span>
+                        </div>
+
+                        <!-- Card 1: Pertumbuhan Ekonomi -->
+                        <div class="relative group rounded-2xl overflow-hidden border-2 border-amber-400/80 shadow-xl card-hover">
+                            <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Pertumbuhan Ekonomi & Industri" 
+                                 class="w-full h-28 sm:h-32 object-cover group-hover:scale-105 transition duration-500"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/800x300/1E3A8A/FFFFFF?text=Pertumbuhan+Ekonomi';">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent p-3 flex flex-col justify-end">
+                                <span class="bg-emerald-600 text-white text-[10px] font-extrabold px-2 py-0.5 rounded w-fit mb-0.5">1. Pertumbuhan Ekonomi</span>
+                                <p class="text-xs text-slate-100 font-semibold">PDB Riil, Pendapatan Nasional & Manufaktur</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: Ketimpangan Ekonomi -->
+                        <div class="relative group rounded-2xl overflow-hidden border-2 border-royal-500/80 shadow-xl card-hover">
+                            <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Ketimpangan Pendapatan" 
+                                 class="w-full h-28 sm:h-32 object-cover group-hover:scale-105 transition duration-500"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/800x300/0056B3/FFFFFF?text=Ketimpangan+Pendapatan';">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent p-3 flex flex-col justify-end">
+                                <span class="bg-amber-600 text-white text-[10px] font-extrabold px-2 py-0.5 rounded w-fit mb-0.5">2. Ketimpangan Ekonomi</span>
+                                <p class="text-xs text-slate-100 font-semibold">Kurva Lorenz & Indikator Rasio Gini</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: Kemiskinan & Digital -->
+                        <div class="relative group rounded-2xl overflow-hidden border-2 border-rose-400/80 shadow-xl card-hover">
+                            <img src="https://images.unsplash.com/photo-1556742049-0a67daf40955?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Kemiskinan dan QRIS Digital" 
+                                 class="w-full h-28 sm:h-32 object-cover group-hover:scale-105 transition duration-500"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/800x300/D97706/FFFFFF?text=Kemiskinan+dan+Fintech';">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent p-3 flex flex-col justify-end">
+                                <span class="bg-rose-600 text-white text-[10px] font-extrabold px-2 py-0.5 rounded w-fit mb-0.5">3. Kemiskinan & Fintech</span>
+                                <p class="text-xs text-slate-100 font-semibold">Garis Kemiskinan BPS, QRIS & Pinjaman Daring</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Overview Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="soft-card p-6 card-hover">
+                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-royal-600 mb-4 text-xl font-bold">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <h3 class="font-bold text-navy-900 text-base">Alokasi Waktu Pembelajaran</h3>
+                    <p class="text-slate-600 text-xs mt-2 leading-relaxed">
+                        Dirancang untuk 3 Pertemuan Tatap Muka (3 x 4 JP x 45 Menit) secara terstruktur.
+                    </p>
+                </div>
+
+                <div class="soft-card p-6 card-hover">
+                    <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center text-amber-600 mb-4 text-xl font-bold">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h3 class="font-bold text-navy-900 text-base">Model Problem Based Learning</h3>
+                    <p class="text-slate-600 text-xs mt-2 leading-relaxed">
+                        Mengorientasikan siswa pada permasalahan riil perekonomian Indonesia menggunakan data BPS resmi.
+                    </p>
+                </div>
+
+                <div class="soft-card p-6 card-hover">
+                    <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600 mb-4 text-xl font-bold">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <h3 class="font-bold text-navy-900 text-base">Fitur Interaktif & Simulasi</h3>
+                    <p class="text-slate-600 text-xs mt-2 leading-relaxed">
+                        Simulator Kurva Lorenz Canvas, Kalkulator Per Kapita, LKPD Form, dan Penilaian Instan.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 2: PETUNJUK PENGGUNAAN ================= -->
+        <section id="tab-petunjuk" class="tab-content hidden space-y-8">
+            <div class="soft-card p-6 sm:p-8 space-y-6">
+                <div class="border-b border-slate-200 pb-4">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-900 flex items-center">
+                        <i class="fa-solid fa-compass text-royal-600 mr-3"></i>
+                        Petunjuk Penggunaan E-Modul Interaktif
+                    </h2>
+                    <p class="text-slate-600 text-xs mt-1">Pahami makna ikon navigasi dan urutan tahapan belajar untuk mencapai hasil maksimal.</p>
+                </div>
+
+                <!-- Icon Guide Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <div class="p-4 rounded-2xl bg-blue-50/80 border border-blue-200 flex items-start space-x-3.5">
+                        <div class="text-3xl">🎯</div>
+                        <div>
+                            <h4 class="font-bold text-blue-950 text-sm">Tujuan Pembelajaran</h4>
+                            <p class="text-xs text-blue-800 mt-1">Fokus capaian kognitif (C2, C3, C4, C5) yang harus dikuasai.</p>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-amber-50/80 border border-amber-200 flex items-start space-x-3.5">
+                        <div class="text-3xl">💡</div>
+                        <div>
+                            <h4 class="font-bold text-amber-950 text-sm">Informasi & Tahukah Kamu</h4>
+                            <p class="text-xs text-amber-800 mt-1">Penjelasan fakta kunci dan aplikasi teori dalam aktivitas ekonomi.</p>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-purple-50/80 border border-purple-200 flex items-start space-x-3.5">
+                        <div class="text-3xl">🧮</div>
+                        <div>
+                            <h4 class="font-bold text-purple-950 text-sm">Rumus dan Hitungan</h4>
+                            <p class="text-xs text-purple-800 mt-1">Persamaan matematis ekonomi beserta langkah pengerjaan lengkap.</p>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-emerald-50/80 border border-emerald-200 flex items-start space-x-3.5">
+                        <div class="text-3xl">🤔</div>
+                        <div>
+                            <h4 class="font-bold text-emerald-950 text-sm">Ayo Berpikir</h4>
+                            <p class="text-xs text-emerald-800 mt-1">Pertanyaan pemantik untuk menstimulasi pemikiran kritis mandiri.</p>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-rose-50/80 border border-rose-200 flex items-start space-x-3.5">
+                        <div class="text-3xl">✍️</div>
+                        <div>
+                            <h4 class="font-bold text-rose-950 text-sm">Aktivitas / LKPD</h4>
+                            <p class="text-xs text-rose-800 mt-1">Lembar Kerja Peserta Didik interaktif berbasis studi kasus riil.</p>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-cyan-50/80 border border-cyan-200 flex items-start space-x-3.5">
+                        <div class="text-3xl">🔗</div>
+                        <div>
+                            <h4 class="font-bold text-cyan-950 text-sm">Materi Tambahan / Internet</h4>
+                            <p class="text-xs text-cyan-800 mt-1">Akses rujukan artikel berita BPS/Fortune/Kontan serta video YouTube.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Learning Steps -->
+                <div class="bg-navy-900 text-white p-6 rounded-2xl border border-royal-600">
+                    <h3 class="font-bold text-amber-400 text-sm mb-4 flex items-center">
+                        <i class="fa-solid fa-route mr-2"></i> Urutan Alur Belajar Berkelanjutan
+                    </h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 text-center text-xs">
+                        <div class="bg-navy-800 p-3 rounded-xl border border-slate-700">
+                            <span class="font-bold text-amber-400 block mb-1">1. Tujuan</span>
+                            <span class="text-slate-300">Baca Sasaran</span>
+                        </div>
+                        <div class="bg-navy-800 p-3 rounded-xl border border-slate-700">
+                            <span class="font-bold text-amber-400 block mb-1">2. Pemantik</span>
+                            <span class="text-slate-300">Renungkan Isu</span>
+                        </div>
+                        <div class="bg-navy-800 p-3 rounded-xl border border-slate-700">
+                            <span class="font-bold text-amber-400 block mb-1">3. Uraian</span>
+                            <span class="text-slate-300">Pahami Konsep</span>
+                        </div>
+                        <div class="bg-navy-800 p-3 rounded-xl border border-slate-700">
+                            <span class="font-bold text-amber-400 block mb-1">4. Studi Kasus</span>
+                            <span class="text-slate-300">Analisis Data</span>
+                        </div>
+                        <div class="bg-navy-800 p-3 rounded-xl border border-slate-700">
+                            <span class="font-bold text-amber-400 block mb-1">5. LKPD</span>
+                            <span class="text-slate-300">Kerjakan Form</span>
+                        </div>
+                        <div class="bg-navy-800 p-3 rounded-xl border border-slate-700">
+                            <span class="font-bold text-amber-400 block mb-1">6. Evaluasi</span>
+                            <span class="text-slate-300">Uji Mandiri</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 3: PETA KONSEP ================= -->
+        <section id="tab-peta-konsep" class="tab-content hidden space-y-8">
+            <div class="soft-card p-6 sm:p-8">
+                <div class="border-b border-slate-200 pb-4 mb-6">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-900 flex items-center">
+                        <i class="fa-solid fa-sitemap text-royal-600 mr-3"></i>
+                        Peta Konsep Pembelajaran (Flowchart Alur Vertikal)
+                    </h2>
+                    <p class="text-slate-600 text-xs mt-1">Bagan hierarki keterkaitan materi Pertumbuhan Ekonomi dan Kemiskinan.</p>
+                </div>
+
+                <!-- Clean Top-Down Branching Diagram -->
+                <div class="overflow-x-auto py-6">
+                    <div class="min-w-[760px] flex flex-col items-center">
+                        
+                        <!-- Root Node -->
+                        <div class="bg-navy-900 text-white px-8 py-4 rounded-2xl font-black text-base shadow-xl border-2 border-amber-400 text-center">
+                            PERTUMBUHAN EKONOMI DAN KEMISKINAN
+                            <div class="text-xs font-semibold text-blue-200 mt-1">Mata Pelajaran Ekonomi · Kelas XI / Fase F</div>
+                        </div>
+
+                        <!-- Vertical Line Down -->
+                        <div class="tree-line-vertical"></div>
+
+                        <!-- Horizontal Split Line -->
+                        <div class="w-3/4 h-0.5 bg-royal-600 relative">
+                            <div class="absolute -top-1 left-0 w-2.5 h-2.5 bg-royal-600 rounded-full"></div>
+                            <div class="absolute -top-1 left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-royal-600 rounded-full"></div>
+                            <div class="absolute -top-1 right-0 w-2.5 h-2.5 bg-royal-600 rounded-full"></div>
+                        </div>
+
+                        <!-- 3 Branches Grid -->
+                        <div class="grid grid-cols-3 gap-6 w-full pt-4">
+                            
+                            <!-- Branch 1 -->
+                            <div class="flex flex-col items-center">
+                                <div class="bg-royal-600 text-white p-3.5 rounded-xl font-bold text-center text-xs w-full shadow border border-blue-400">
+                                    PENDAPATAN NASIONAL
+                                    <span class="block text-[11px] font-normal text-amber-300 mt-0.5">Pertemuan 1</span>
+                                </div>
+                                <div class="tree-line-vertical"></div>
+                                <div class="space-y-2 w-full text-xs">
+                                    <div class="p-2.5 bg-blue-50 border border-blue-200 rounded-xl text-slate-800 font-semibold text-center">Konsep PDB, PNB & PFN</div>
+                                    <div class="p-2.5 bg-blue-50 border border-blue-200 rounded-xl text-slate-800 font-semibold text-center">Tiga Pendekatan Penghitungan</div>
+                                    <div class="p-2.5 bg-blue-50 border border-blue-200 rounded-xl text-slate-800 font-semibold text-center">Pendapatan per Kapita</div>
+                                </div>
+                            </div>
+
+                            <!-- Branch 2 -->
+                            <div class="flex flex-col items-center">
+                                <div class="bg-royal-600 text-white p-3.5 rounded-xl font-bold text-center text-xs w-full shadow border border-blue-400">
+                                    PERTUMBUHAN & KESENJANGAN
+                                    <span class="block text-[11px] font-normal text-amber-300 mt-0.5">Pertemuan 2</span>
+                                </div>
+                                <div class="tree-line-vertical"></div>
+                                <div class="space-y-2 w-full text-xs">
+                                    <div class="p-2.5 bg-amber-50 border border-amber-200 rounded-xl text-slate-800 font-semibold text-center">Laju Pertumbuhan Ekonomi PDB Riil</div>
+                                    <div class="p-2.5 bg-amber-50 border border-amber-200 rounded-xl text-slate-800 font-semibold text-center">Pertumbuhan vs Pembangunan Ekonomi</div>
+                                    <div class="p-2.5 bg-amber-50 border border-amber-200 rounded-xl text-slate-800 font-semibold text-center">Kurva Lorenz & Rasio Gini</div>
+                                </div>
+                            </div>
+
+                            <!-- Branch 3 -->
+                            <div class="flex flex-col items-center">
+                                <div class="bg-royal-600 text-white p-3.5 rounded-xl font-bold text-center text-xs w-full shadow border border-blue-400">
+                                    KEMISKINAN & EKONOMI DIGITAL
+                                    <span class="block text-[11px] font-normal text-amber-300 mt-0.5">Pertemuan 3</span>
+                                </div>
+                                <div class="tree-line-vertical"></div>
+                                <div class="space-y-2 w-full text-xs">
+                                    <div class="p-2.5 bg-emerald-50 border border-emerald-200 rounded-xl text-slate-800 font-semibold text-center">Garis Kemiskinan & Penyebab</div>
+                                    <div class="p-2.5 bg-emerald-50 border border-emerald-200 rounded-xl text-slate-800 font-semibold text-center">Ekonomi Digital & QRIS UMKM</div>
+                                    <div class="p-2.5 bg-emerald-50 border border-emerald-200 rounded-xl text-slate-800 font-semibold text-center">Fintech Lending & Tantangan</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Logical Flow Summary -->
+                        <div class="mt-8 bg-slate-100 p-4 rounded-2xl border border-slate-300 w-full text-center text-xs font-bold text-navy-900 shadow-sm">
+                            <i class="fa-solid fa-arrows-left-right text-amber-500 mr-2"></i>
+                            ALUR PEMAHAMAN: PDB Naik ➔ Pertumbuhan Ekonomi ➔ Distribusi Merata? ➔ Tingkat Kemiskinan ➔ Solusi Digital?
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 4: PERTEMUAN 1 ================= -->
+        <section id="tab-pertemuan1" class="tab-content hidden space-y-8">
+            
+            <!-- Banner Pertemuan 1 -->
+            <div class="bg-navy-900 text-white rounded-3xl p-6 sm:p-8 border border-royal-600 shadow-lg">
+                <span class="bg-royal-600 text-amber-300 font-extrabold px-3 py-1 rounded-full text-xs uppercase tracking-wider">PERTEMUAN 1</span>
+                <h2 class="text-3xl font-black mt-2">Pendapatan Nasional</h2>
+                <p class="text-blue-100 text-xs sm:text-sm mt-1">Konsep PDB, PNB, PFN, Tiga Pendekatan Penghitungan, dan Pendapatan per Kapita.</p>
+                
+                <div class="mt-6 bg-navy-800/90 rounded-2xl p-4 border border-blue-700/60 text-xs space-y-1.5">
+                    <h4 class="font-bold text-amber-400 text-sm mb-2 flex items-center">
+                        <i class="fa-solid fa-bullseye mr-2"></i> Tujuan Pembelajaran Pertemuan 1
+                    </h4>
+                    <p class="text-slate-200"><strong>1.1 [C2]:</strong> Menjelaskan pengertian pendapatan nasional serta membedakan PDB, PNB, dan pendapatan per kapita dengan kalimat sendiri.</p>
+                    <p class="text-slate-200"><strong>1.2 [C3]:</strong> Menghitung pendapatan per kapita berdasarkan data pendapatan nasional dan jumlah penduduk.</p>
+                    <p class="text-slate-200"><strong>1.3 [C3]:</strong> Menggunakan pendekatan produksi, pendapatan, dan pengeluaran untuk mengelompokkan kegiatan ekonomi.</p>
+                </div>
+            </div>
+
+            <!-- Pertanyaan Pemantik 1 -->
+            <div class="p-6 rounded-2xl bg-amber-50/90 border-2 border-amber-300 shadow-sm">
+                <h3 class="font-extrabold text-amber-950 text-base flex items-center mb-2">
+                    <span class="text-2xl mr-2">🤔</span> Ayo Berpikir Pemantik
+                </h3>
+                <p class="text-xs text-amber-900 leading-relaxed mb-3">
+                    BPS mengumumkan ekonomi Indonesia tumbuh 5,29 persen, tetapi seorang pedagang di pasar dekat rumahmu mengeluh dagangannya sepi. Mengapa angka nasional bisa terasa berbeda dengan pengalaman sehari-hari?
+                </p>
+                <textarea class="w-full text-xs p-3 border border-amber-200 rounded-xl focus:ring-2 focus:ring-royal-600 outline-none bg-white" rows="2" placeholder="Tuliskan dugaan analisismu di sini..."></textarea>
+            </div>
+
+            <!-- Material Content 1 -->
+            <div class="soft-card p-6 sm:p-8 space-y-8">
+                
+                <div>
+                    <h3 class="text-lg font-extrabold text-navy-900 mb-3 pb-2 border-b border-slate-200">
+                        Pengertian dan Kegunaan Pendapatan Nasional
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                        <strong>Pendapatan nasional</strong> adalah ukuran yang menggambarkan nilai kegiatan ekonomi suatu negara selama periode tertentu, biasanya satu tahun. Pengukuran ini membantu pemerintah dan masyarakat mengevaluasi tingkat produksi, kemajuan pembangunan, serta menjadi dasar perencanaan kebijakan ekonomi.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-4">
+                        <div class="relative rounded-2xl overflow-hidden border border-slate-200 shadow card-hover">
+                            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Industri Pengolahan Manufaktur" 
+                                 class="w-full h-44 object-cover"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/800x400/1E3A8A/FFFFFF?text=Industri+Manufaktur';">
+                            <div class="absolute bottom-0 inset-x-0 bg-slate-950/80 p-2.5 text-white text-[11px] font-semibold">
+                                Sektor Industri Pengolahan & Manufaktur Nasional
+                            </div>
+                        </div>
+                        <div class="relative rounded-2xl overflow-hidden border border-slate-200 shadow card-hover">
+                            <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Aktivitas Perdagangan Pasar" 
+                                 class="w-full h-44 object-cover"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/800x400/0056B3/FFFFFF?text=Aktivitas+Perdagangan';">
+                            <div class="absolute bottom-0 inset-x-0 bg-slate-950/80 p-2.5 text-white text-[11px] font-semibold">
+                                Aktivitas Perdagangan & Jasa Domestik
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Konsep PDB & PNB -->
+                <div>
+                    <h3 class="text-lg font-extrabold text-navy-900 mb-3 pb-2 border-b border-slate-200">
+                        Konsep Produk Domestik Bruto (PDB) dan Produk Nasional Bruto (PNB)
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 my-3">
+                        <div class="p-5 bg-blue-50/80 rounded-2xl border border-blue-200">
+                            <h4 class="font-bold text-blue-950 text-sm mb-1.5">Produk Domestik Bruto (PDB)</h4>
+                            <p class="text-xs text-blue-900 leading-relaxed">
+                                Menekankan <strong>LOKASI PRODUKSI</strong>. Nilai barang/jasa akhir yang diproduksi di dalam wilayah suatu negara tanpa memandang kewarganegaraan pemiliknya.
+                            </p>
+                            <div class="mt-2.5 p-2 bg-white rounded-lg text-[11px] border border-blue-200 text-slate-700">
+                                💡 <em>Contoh:</em> Pabrik elektronik milik perusahaan Jepang di Bekasi masuk ke PDB Indonesia.
+                            </div>
+                        </div>
+
+                        <div class="p-5 bg-purple-50/80 rounded-2xl border border-purple-200">
+                            <h4 class="font-bold text-purple-950 text-sm mb-1.5">Produk Nasional Bruto (PNB)</h4>
+                            <p class="text-xs text-purple-900 leading-relaxed">
+                                Menekankan <strong>KEPEMILIKAN FAKTOR PRODUKSI</strong>. Menghitung produksi milik warga negara sendiri, termasuk pendapatan dari luar negeri.
+                            </p>
+                            <div class="mt-2.5 p-2 bg-white rounded-lg text-[11px] border border-purple-200 text-slate-700">
+                                💡 <em>Contoh:</em> Pendapatan TKI atau bisnis WNI di luar negeri masuk PNB Indonesia.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="formula-box p-4 rounded-2xl text-xs my-4 shadow-md">
+                        <div class="text-amber-400 font-extrabold text-xs mb-1">🧮 RUMUS HUBUNGAN PDB DAN PNB</div>
+                        <div class="text-base font-black tracking-wide font-mono">PNB = PDB + PFN</div>
+                        <p class="text-[11px] text-slate-300 mt-2">
+                            *PFN (Pendapatan Faktor Neto) = Pendapatan faktor warga negara di luar negeri - Pendapatan faktor warga asing di dalam negeri.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Tiga Pendekatan -->
+                <div>
+                    <h3 class="text-lg font-extrabold text-navy-900 mb-3 pb-2 border-b border-slate-200">
+                        Tiga Pendekatan Penghitungan Pendapatan Nasional
+                    </h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs border-collapse border border-slate-200">
+                            <thead>
+                                <tr class="bg-navy-900 text-white">
+                                    <th class="p-3 border">Pendekatan</th>
+                                    <th class="p-3 border">Yang Dijumlahkan</th>
+                                    <th class="p-3 border">Rumus / Persamaan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="p-3 border font-bold text-royal-600">Produksi</td>
+                                    <td class="p-3 border">Nilai Tambah (Output - Input Antara) seluruh sektor.</td>
+                                    <td class="p-3 border font-mono">Nilai Tambah = Output - Input Antara</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="p-3 border font-bold text-royal-600">Pendapatan</td>
+                                    <td class="p-3 border">Balas jasa pemilik faktor produksi (upah, sewa, bunga, laba).</td>
+                                    <td class="p-3 border font-mono">Pendapatan = Upah + Sewa + Bunga + Laba</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="p-3 border font-bold text-royal-600">Pengeluaran</td>
+                                    <td class="p-3 border">Total belanja akhir barang/jasa dalam perekonomian.</td>
+                                    <td class="p-3 border font-mono">PDB = C + I + G + (X - M)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Pendapatan Per Kapita + Kalkulator -->
+                <div>
+                    <h3 class="text-lg font-extrabold text-navy-900 mb-3 pb-2 border-b border-slate-200">
+                        Pendapatan per Kapita
+                    </h3>
+                    <div class="formula-box p-4 rounded-2xl text-xs mb-4 shadow-md">
+                        <div class="text-amber-400 font-extrabold mb-1">🧮 RUMUS PENDAPATAN PER KAPITA</div>
+                        <div class="text-base font-black font-mono">Pendapatan per Kapita = Pendapatan Nasional ÷ Jumlah Penduduk</div>
+                    </div>
+
+                    <!-- Calculator -->
+                    <div class="bg-navy-900 text-white p-5 rounded-2xl border border-royal-600 shadow-lg space-y-4">
+                        <h4 class="font-bold text-amber-400 text-xs uppercase tracking-wider flex items-center">
+                            <i class="fa-solid fa-calculator mr-2"></i> Kalkulator Pendapatan per Kapita Interaktif
+                        </h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                            <div>
+                                <label class="block text-slate-300 mb-1">PDB / Pendapatan Nasional (Rp Triliun):</label>
+                                <input type="number" id="calcPdb" value="23821.1" class="w-full p-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white font-bold outline-none focus:ring-2 focus:ring-royal-500">
+                            </div>
+                            <div>
+                                <label class="block text-slate-300 mb-1">Jumlah Penduduk (Juta Jiwa):</label>
+                                <input type="number" id="calcPop" value="284.6" class="w-full p-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white font-bold outline-none focus:ring-2 focus:ring-royal-500">
+                            </div>
+                        </div>
+                        <button onclick="calculatePerCapita()" class="bg-gold-500 hover:bg-gold-400 text-navy-900 font-extrabold px-4 py-2 rounded-xl text-xs uppercase tracking-wider transition">
+                            Hitung Per Kapita
+                        </button>
+                        <div id="calcResult" class="p-3 bg-slate-800 rounded-xl text-xs text-emerald-400 font-bold border border-slate-700">
+                            Hasil PDB per Kapita: Rp 83.700.281 / tahun (~ Rp 6.975.023 / bulan)
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Contoh Kasus Pertemuan 1 -->
+            <div class="bg-slate-200/80 rounded-2xl p-6 border border-slate-300 space-y-3">
+                <div class="flex items-center space-x-2 text-royal-600 font-extrabold text-sm">
+                    <i class="fa-solid fa-file-lines text-base"></i>
+                    <span>CONTOH KASUS PERTEMUAN 1: PDB Indonesia 2025 dan Keterbatasannya</span>
+                </div>
+                <p class="text-xs text-slate-700 leading-relaxed">
+                    <strong>Kasus:</strong> BPS mencatat PDB Indonesia tahun 2025 atas dasar harga berlaku sebesar Rp23.821,1 triliun dengan PDB per kapita Rp83,7 juta per tahun. Meskipun tergolong negara berpendapatan menengah atas menurut Bank Dunia, angka kemiskinan nasional masih berada di tingkat 8,07% (22,93 juta orang) dan Rasio Gini 0,368.
+                </p>
+                <div class="bg-white p-3.5 rounded-xl text-xs space-y-1.5 border border-slate-300">
+                    <div class="font-bold text-navy-900">Pembahasan Contoh Kasus:</div>
+                    <p class="text-slate-600">
+                        1. Rata-rata PDB per kapita per bulan: Rp83,7 juta ÷ 12 bulan = <strong>Rp6,97 juta / bulan</strong>.<br>
+                        2. Angka ini belum tentu menggambarkan pendapatan riil setiap individu karena angka rata-rata menyembunyikan ketimpangan distribusi pendapatan di antara kelompok masyarakat kaya dan miskin.
+                    </p>
+                </div>
+            </div>
+
+            <!-- LKPD 1 -->
+            <div class="soft-card p-6 sm:p-8 border-2 border-royal-600 shadow-xl space-y-6">
+                <div class="border-b border-slate-200 pb-4 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
+                    <div>
+                        <span class="bg-rose-100 text-rose-800 text-xs font-bold px-2.5 py-1 rounded">✍️ LEMBAR KERJA PESERTA DIDIK (LKPD 1)</span>
+                        <h3 class="text-xl font-bold text-navy-900 mt-1">Menghitung dan Membaca PDB Indonesia 2025</h3>
+                    </div>
+                    <a href="https://www.fortuneidn.com/finance/pdb-indonesia-2025-tumbuh-5-11-persen-ini-penjelasan-bps-d7w03-00-dz73p-jjccrm" target="_blank" class="text-xs text-royal-600 font-bold hover:underline flex items-center">
+                        <i class="fa-solid fa-link mr-1"></i> Rujukan Artikel BPS Fortune
+                    </a>
+                </div>
+
+                <div class="space-y-4 text-xs">
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+                        <h4 class="font-bold text-navy-900 text-sm">Soal 1 [C3]: Hitung rata-rata PDB per kapita Indonesia per bulan tahun 2025 (Rupiah).</h4>
+                        <input type="number" id="lkpd1_q1_ans" placeholder="Isi hasil pengerjaanmu di sini..." class="w-full p-2.5 border rounded-xl bg-white outline-none focus:ring-2 focus:ring-royal-600">
+                    </div>
+
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+                        <h4 class="font-bold text-navy-900 text-sm">Soal 2 [C3]: Hitung perkiraan jumlah penduduk Indonesia 2025 (Juta Jiwa).</h4>
+                        <input type="number" step="0.1" id="lkpd1_q2_ans" placeholder="Isi perkiraan jumlah penduduk (Juta Jiwa)..." class="w-full p-2.5 border rounded-xl bg-white outline-none focus:ring-2 focus:ring-royal-600">
+                    </div>
+
+                    <button onclick="checkLKPD1()" class="bg-royal-600 hover:bg-royal-700 text-white font-bold px-5 py-2.5 rounded-xl shadow transition">
+                        Periksa Jawaban LKPD 1
+                    </button>
+                    <div id="lkpd1Feedback" class="hidden p-3 rounded-xl text-xs font-bold"></div>
+                </div>
+
+                <!-- Video Link 1 -->
+                <div class="bg-navy-900 text-white p-4 rounded-2xl flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <i class="fa-brands fa-youtube text-red-500 text-3xl"></i>
+                        <div>
+                            <div class="font-bold text-xs">Video Pembelajaran Pertemuan 1</div>
+                            <div class="text-[11px] text-slate-300">Konsep Pendapatan Nasional & PDB</div>
+                        </div>
+                    </div>
+                    <a href="https://www.youtube.com/results?search_query=pendapatan+nasional+ekonomi+kelas+11" target="_blank" class="bg-red-600 hover:bg-red-700 text-white font-bold px-3 py-1.5 rounded-lg text-xs">
+                        Tonton Video YouTube <i class="fa-solid fa-external-link ml-1"></i>
+                    </a>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ================= TAB 5: PERTEMUAN 2 ================= -->
+        <section id="tab-pertemuan2" class="tab-content hidden space-y-8">
+            
+            <div class="bg-navy-900 text-white rounded-3xl p-6 sm:p-8 border border-royal-600 shadow-lg">
+                <span class="bg-gold-500 text-navy-900 font-extrabold px-3 py-1 rounded-full text-xs uppercase tracking-wider">PERTEMUAN 2</span>
+                <h2 class="text-3xl font-black mt-2">Pertumbuhan Ekonomi dan Kesenjangan Pendapatan</h2>
+                <p class="text-blue-100 text-xs sm:text-sm mt-1">Laju Pertumbuhan Ekonomi PDB Riil, Kurva Lorenz, dan Rasio Gini.</p>
+                
+                <div class="mt-6 bg-navy-800/90 rounded-2xl p-4 border border-blue-700/60 text-xs space-y-1.5">
+                    <h4 class="font-bold text-amber-400 text-sm mb-2 flex items-center">
+                        <i class="fa-solid fa-bullseye mr-2"></i> Tujuan Pembelajaran Pertemuan 2
+                    </h4>
+                    <p class="text-slate-200"><strong>2.1 [C2]:</strong> Menjelaskan pengertian pertumbuhan ekonomi dan membedakannya dari pembangunan ekonomi.</p>
+                    <p class="text-slate-200"><strong>2.2 [C3]:</strong> Menghitung laju pertumbuhan ekonomi menggunakan data PDB riil.</p>
+                    <p class="text-slate-200"><strong>2.3 [C2]:</strong> Menjelaskan fungsi Kurva Lorenz dan Rasio Gini untuk menggambarkan ketimpangan.</p>
+                </div>
+            </div>
+
+            <!-- Pertanyaan Pemantik 2 -->
+            <div class="p-6 rounded-2xl bg-amber-50/90 border-2 border-amber-300 shadow-sm">
+                <h3 class="font-extrabold text-amber-950 text-base flex items-center mb-2">
+                    <span class="text-2xl mr-2">🤔</span> Ayo Berpikir Pemantik
+                </h3>
+                <p class="text-xs text-amber-900 leading-relaxed">
+                    Jika PDB per kapita Indonesia sekitar Rp83,7 juta per tahun, apakah berarti setiap orang di sekitarmu berpenghasilan Rp7 juta per bulan? Apa yang mungkin "tersembunyi" di balik angka rata-rata?
+                </p>
+            </div>
+
+            <!-- Uraian Pertemuan 2 -->
+            <div class="soft-card p-6 sm:p-8 space-y-8">
+                
+                <div>
+                    <h3 class="text-lg font-extrabold text-navy-900 mb-3 pb-2 border-b border-slate-200">
+                        Laju Pertumbuhan Ekonomi
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-3">
+                        Pertumbuhan ekonomi diukur berdasarkan kenaikan jumlah produksi barang dan jasa dari waktu ke waktu yang dihitung menggunakan <strong>PDB Riil (Harga Konstan)</strong> untuk mengeliminasi dampak inflasi/perubahan harga.
+                    </p>
+                    <div class="formula-box p-4 rounded-2xl text-xs my-3 shadow-md">
+                        <div class="text-amber-400 font-extrabold mb-1">🧮 RUMUS LAJU PERTUMBUHAN EKONOMI (g)</div>
+                        <div class="text-base font-black font-mono">Laju Pertumbuhan (g) = [(PDB Riil Tahun Ini - PDB Riil Tahun Lalu) ÷ PDB Riil Tahun Lalu] × 100%</div>
+                    </div>
+                </div>
+
+                <!-- Lorenz Simulator Canvas -->
+                <div class="bg-navy-900 text-white rounded-2xl p-6 border border-royal-600 space-y-4 shadow-xl">
+                    <div class="flex flex-col sm:flex-row justify-between sm:items-center border-b border-slate-800 pb-3 gap-2">
+                        <h4 class="font-bold text-amber-400 text-sm flex items-center">
+                            <i class="fa-solid fa-chart-area mr-2"></i> Simulator Kurva Lorenz Interaktif
+                        </h4>
+                        <span id="giniDisplay" class="bg-royal-600 text-white text-xs px-3 py-1 rounded-full font-bold w-fit">
+                            Rasio Gini: 0.38 (Ketimpangan Rendah)
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                        <div class="lg:col-span-7 bg-white p-3 rounded-xl">
+                            <canvas id="lorenzCanvas" width="400" height="280" class="w-full h-auto"></canvas>
+                        </div>
+                        <div class="lg:col-span-5 space-y-4 text-xs">
+                            <p class="text-slate-300">
+                                Geser *slider* di bawah untuk mensimulasikan perubahan kelengkungan Kurva Lorenz dan nilai Rasio Gini:
+                            </p>
+                            <div>
+                                <label class="block text-slate-200 font-bold mb-1">Tingkat Ketimpangan (Curvature):</label>
+                                <input type="range" id="inequalitySlider" min="0" max="0.8" step="0.05" value="0.38" class="w-full accent-amber-500">
+                            </div>
+                            <div class="p-3 bg-slate-800 rounded-xl text-slate-300 space-y-1 border border-slate-700">
+                                <div><strong class="text-emerald-400">Garis Hijau:</strong> Garis Pemerataan Sempurna</div>
+                                <div><strong class="text-amber-400">Kurva Oranye:</strong> Kurva Lorenz Distribusi</div>
+                                <div><strong class="text-blue-400">Area Biru:</strong> Luas Ketimpangan (A)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real Photos Disparity Comparison -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-4">
+                    <div class="relative rounded-2xl overflow-hidden border border-slate-200 shadow card-hover">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" 
+                             alt="Gedung Pencakar Langit Perkotaan" 
+                             class="w-full h-44 object-cover"
+                             onerror="this.onerror=null; this.src='https://placehold.co/800x400/1E3A8A/FFFFFF?text=Pusat+Bisnis+Modern';">
+                        <div class="absolute bottom-0 inset-x-0 bg-slate-950/80 p-2.5 text-white text-[11px] font-semibold">
+                            Pusat Bisnis Modern (Kawasan Perkotaan)
+                        </div>
+                    </div>
+                    <div class="relative rounded-2xl overflow-hidden border border-slate-200 shadow card-hover">
+                        <img src="https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?auto=format&fit=crop&w=800&q=80" 
+                             alt="Pemukiman Penduduk" 
+                             class="w-full h-44 object-cover"
+                             onerror="this.onerror=null; this.src='https://placehold.co/800x400/D97706/FFFFFF?text=Pemukiman+Penduduk';">
+                        <div class="absolute bottom-0 inset-x-0 bg-slate-950/80 p-2.5 text-white text-[11px] font-semibold">
+                            Pemukiman Penduduk Berpenghasilan Rendah
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Contoh Kasus Pertemuan 2 -->
+            <div class="bg-amber-50/90 rounded-2xl p-6 border border-amber-200 space-y-3">
+                <div class="flex items-center space-x-2 text-amber-950 font-extrabold text-sm">
+                    <i class="fa-solid fa-calculator text-base"></i>
+                    <span>CONTOH KASUS PERTEMUAN 2: Pertumbuhan Ekonomi dan Pemerataan</span>
+                </div>
+                <p class="text-xs text-amber-900 leading-relaxed">
+                    <strong>Kasus:</strong> PDB Indonesia atas dasar harga konstan pada triwulan II 2026 mencapai Rp3.576,2 triliun, naik dari Rp3.396,6 triliun pada periode yang sama tahun sebelumnya. Di sisi lain, Rasio Gini tercatat sebesar 0,363 (September 2025) dan naik menjadi 0,368 (Maret 2026).
+                </p>
+                <div class="bg-white p-3.5 rounded-xl border border-amber-200 text-xs text-slate-800 space-y-1.5">
+                    <div class="font-bold text-navy-900">Pembahasan Contoh Kasus:</div>
+                    <p class="font-mono text-royal-700 font-bold">Laju Pertumbuhan (g) = [(3.576,2 - 3.396,6) / 3.396,6] × 100% = 5,29%</p>
+                    <p class="text-slate-600">
+                        <strong>Analisis:</strong> Meskipun ekonomi tumbuh pesat sebesar 5,29%, Rasio Gini yang bergerak naik dari 0,363 menjadi 0,368 menandakan bahwa ketimpangan pengeluaran sedikit melebar, sehingga hasil pertumbuhan ekonomi belum sepenuhnya terdistribusi secara merata.
+                    </p>
+                </div>
+            </div>
+
+            <!-- LKPD 2 -->
+            <div class="soft-card p-6 sm:p-8 border-2 border-royal-600 shadow-xl space-y-6">
+                <div class="border-b border-slate-200 pb-4 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
+                    <div>
+                        <span class="bg-amber-100 text-amber-900 text-xs font-bold px-2.5 py-1 rounded">✍️ LEMBAR KERJA PESERTA DIDIK (LKPD 2)</span>
+                        <h3 class="text-xl font-bold text-navy-900 mt-1">Pertumbuhan Tinggi, Apakah Sudah Merata?</h3>
+                    </div>
+                    <a href="https://investortrust.id/macro/111924/ekonomi-tumbuh-5-29-angka-pengangguran-kemiskinan-turun-tapi-ketimpangan-membesar" target="_blank" class="text-xs text-royal-600 font-bold hover:underline flex items-center">
+                        <i class="fa-solid fa-link mr-1"></i> Rujukan Artikel Investortrust
+                    </a>
+                </div>
+
+                <div class="space-y-4 text-xs">
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+                        <h4 class="font-bold text-navy-900 text-sm">Soal 1 [C3]: Hitung perubahan Rasio Gini nasional dari Sept 2025 (0,363) ke Maret 2026 (0,368).</h4>
+                        <input type="number" step="0.001" id="lkpd2_q1_ans" placeholder="Isi perubahan nilai Gini (+/-)..." class="w-full p-2.5 border rounded-xl bg-white outline-none focus:ring-2 focus:ring-royal-600">
+                    </div>
+
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+                        <h4 class="font-bold text-navy-900 text-sm">Soal 2 [C3]: Hitung berapa kali lipat tingkat kemiskinan perdesaan (10,67%) dibanding perkotaan (6,34%).</h4>
+                        <input type="number" step="0.01" id="lkpd2_q2_ans" placeholder="Isi hasil perbandingan (kali lipat)..." class="w-full p-2.5 border rounded-xl bg-white outline-none focus:ring-2 focus:ring-royal-600">
+                    </div>
+
+                    <button onclick="checkLKPD2()" class="bg-royal-600 hover:bg-royal-700 text-white font-bold px-5 py-2.5 rounded-xl shadow transition">
+                        Periksa Jawaban LKPD 2
+                    </button>
+                    <div id="lkpd2Feedback" class="hidden p-3 rounded-xl text-xs font-bold"></div>
+                </div>
+
+                <!-- Video Link 2 -->
+                <div class="bg-navy-900 text-white p-4 rounded-2xl flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <i class="fa-brands fa-youtube text-red-500 text-3xl"></i>
+                        <div>
+                            <div class="font-bold text-xs">Video Pembelajaran Pertemuan 2</div>
+                            <div class="text-[11px] text-slate-300">Kurva Lorenz & Rasio Gini</div>
+                        </div>
+                    </div>
+                    <a href="https://www.youtube.com/results?search_query=kurva+lorenz+dan+rasio+gini+ekonomi+kelas+11" target="_blank" class="bg-red-600 hover:bg-red-700 text-white font-bold px-3 py-1.5 rounded-lg text-xs">
+                        Tonton Video YouTube <i class="fa-solid fa-external-link ml-1"></i>
+                    </a>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ================= TAB 6: PERTEMUAN 3 ================= -->
+        <section id="tab-pertemuan3" class="tab-content hidden space-y-8">
+            
+            <div class="bg-navy-900 text-white rounded-3xl p-6 sm:p-8 border border-royal-600 shadow-lg">
+                <span class="bg-emerald-500 text-navy-900 font-extrabold px-3 py-1 rounded-full text-xs uppercase tracking-wider">PERTEMUAN 3</span>
+                <h2 class="text-3xl font-black mt-2">Kemiskinan dan Ekonomi Digital</h2>
+                <p class="text-blue-100 text-xs sm:text-sm mt-1">Garis Kemiskinan BPS, Faktor Kemiskinan, QRIS UMKM, dan Fintech Lending.</p>
+                
+                <div class="mt-6 bg-navy-800/90 rounded-2xl p-4 border border-blue-700/60 text-xs space-y-1.5">
+                    <h4 class="font-bold text-amber-400 text-sm mb-2 flex items-center">
+                        <i class="fa-solid fa-bullseye mr-2"></i> Tujuan Pembelajaran Pertemuan 3
+                    </h4>
+                    <p class="text-slate-200"><strong>3.1 [C2]:</strong> Menjelaskan pengertian kemiskinan serta faktor-faktor yang memengaruhinya.</p>
+                    <p class="text-slate-200"><strong>3.2 [C2]:</strong> Menjelaskan pengertian ekonomi digital dan fintech.</p>
+                    <p class="text-slate-200"><strong>3.3 [C5]:</strong> Menjelaskan keterbatasan ekonomi digital dan fintech dalam membantu mengurangi kemiskinan.</p>
+                </div>
+            </div>
+
+            <!-- Pertanyaan Pemantik 3 -->
+            <div class="p-6 rounded-2xl bg-amber-50/90 border-2 border-amber-300 shadow-sm">
+                <h3 class="font-extrabold text-amber-950 text-base flex items-center mb-2">
+                    <span class="text-2xl mr-2">🤔</span> Ayo Berpikir Pemantik
+                </h3>
+                <p class="text-xs text-amber-900 leading-relaxed">
+                    Kamu mungkin sudah sering membayar dengan QRIS atau dompet digital. Menurutmu, apakah teknologi pembayaran digital cukup untuk membantu keluarga berpenghasilan rendah keluar dari kemiskinan? Apa lagi yang mereka butuhkan?
+                </p>
+            </div>
+
+            <!-- Uraian Pertemuan 3 -->
+            <div class="soft-card p-6 sm:p-8 space-y-8">
+                
+                <div>
+                    <h3 class="text-lg font-extrabold text-navy-900 mb-3 pb-2 border-b border-slate-200">
+                        Garis Kemiskinan BPS
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-3">
+                        Di Indonesia, BPS mengukur kemiskinan menggunakan pendekatan kebutuhan dasar (*Basic Needs Approach*). Seseorang dikategorikan miskin jika pengeluaran per kapita per bulan berada di bawah Garis Kemiskinan.
+                    </p>
+                    <div class="formula-box p-4 rounded-2xl text-xs my-3 shadow-md">
+                        <div class="text-amber-400 font-extrabold mb-1">🧮 RUMUS GARIS KEMISKINAN (GK)</div>
+                        <div class="text-base font-black font-mono">Garis Kemiskinan = Garis Kemiskinan Makanan + Garis Kemiskinan Non-Makanan</div>
+                        <p class="text-[11px] text-slate-300 mt-1 font-sans">
+                            *Garis Kemiskinan Makanan menyumbang 74,70% dari batas nasional (beras adalah komoditas terbesar).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 6 Factors Grid -->
+                <div>
+                    <h3 class="text-lg font-extrabold text-navy-900 mb-4 pb-2 border-b border-slate-200">
+                        Faktor-Faktor Penyebab Kemiskinan
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 card-hover">
+                            <span class="font-bold text-royal-600 block text-sm mb-1">1. Kesempatan Kerja Terbatas</span>
+                            <p class="text-slate-600 leading-relaxed">Lapangan kerja formal minim membuat pendapatan tidak stabil.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 card-hover">
+                            <span class="font-bold text-royal-600 block text-sm mb-1">2. Pendidikan & Keterampilan Low</span>
+                            <p class="text-slate-600 leading-relaxed">Keterbatasan keahlian menyulitkan akses ke pekerjaan bergaji tinggi.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 card-hover">
+                            <span class="font-bold text-royal-600 block text-sm mb-1">3. Keterbatasan Aset Produktif</span>
+                            <p class="text-slate-600 leading-relaxed">Tidak memiliki modal usaha, lahan pertanian, atau tabungan.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 card-hover">
+                            <span class="font-bold text-royal-600 block text-sm mb-1">4. Akses Layanan Dasar Minim</span>
+                            <p class="text-slate-600 leading-relaxed">Minimnya akses kesehatan, air bersih, dan infrastruktur desa.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 card-hover">
+                            <span class="font-bold text-royal-600 block text-sm mb-1">5. Ketimpangan Kesempatan</span>
+                            <p class="text-slate-600 leading-relaxed">Akses pasar dan fasilitas kredit hanya terpusat pada kelompok tertentu.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 card-hover">
+                            <span class="font-bold text-royal-600 block text-sm mb-1">6. Guncangan & Bencana</span>
+                            <p class="text-slate-600 leading-relaxed">Bencana alam, krisis pangan, atau sakit parah tanpa perlindungan.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real Photos Fintech QRIS -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-4">
+                    <div class="relative rounded-2xl overflow-hidden border border-slate-200 shadow card-hover">
+                        <img src="https://images.unsplash.com/photo-1556742049-0a67daf40955?auto=format&fit=crop&w=800&q=80" 
+                             alt="QRIS Pembayaran Digital UMKM" 
+                             class="w-full h-44 object-cover"
+                             onerror="this.onerror=null; this.src='https://placehold.co/800x400/0056B3/FFFFFF?text=QRIS+UMKM';">
+                        <div class="absolute bottom-0 inset-x-0 bg-slate-950/80 p-2.5 text-white text-[11px] font-semibold">
+                            Sistem Pembayaran Digital QRIS pada UMKM
+                        </div>
+                    </div>
+                    <div class="relative rounded-2xl overflow-hidden border border-slate-200 shadow card-hover">
+                        <img src="https://images.unsplash.com/photo-1534951009808-7d6105b129c7?auto=format&fit=crop&w=800&q=80" 
+                             alt="Petani Pedesaan" 
+                             class="w-full h-44 object-cover"
+                             onerror="this.onerror=null; this.src='https://placehold.co/800x400/D97706/FFFFFF?text=Masyarakat+Pedesaan';">
+                        <div class="absolute bottom-0 inset-x-0 bg-slate-950/80 p-2.5 text-white text-[11px] font-semibold">
+                            Sektor Pertanian & Kemiskinan Pedesaan
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Contoh Kasus Pertemuan 3 -->
+            <div class="bg-slate-200/80 rounded-2xl p-6 border border-slate-300 space-y-3">
+                <div class="flex items-center space-x-2 text-royal-600 font-extrabold text-sm">
+                    <i class="fa-solid fa-store text-base"></i>
+                    <span>CONTOH KASUS PERTEMUAN 3: Penggunaan QRIS pedagang Plaza Bukittinggi</span>
+                </div>
+                <p class="text-xs text-slate-700 leading-relaxed">
+                    <strong>Kasus:</strong> Wawancara pada pedagang di Plaza Bukittinggi menunjukkan bahwa pedagang minuman mengalami peningkatan penjualan (25 menjadi 60 cup/hari) setelah mengadopsi QRIS. Namun, pedagang es krim merasa dampaknya belum signifikan karena mayoritas pelanggannya belum terbiasa pembayaran digital, sedangkan pedagang *seafood* terkendala keterlambatan pencairan dana H+1.
+                </p>
+                <div class="bg-white p-3.5 rounded-xl border border-slate-300 text-xs text-slate-800 space-y-1">
+                    <div class="font-bold text-navy-900">Kesimpulan Kasus:</div>
+                    <p class="text-slate-600 leading-relaxed">
+                        QRIS hanyalah alat pendukung transaksi. Keberhasilannya sangat bergantung pada literasi digital pembeli, keandalan jaringan internet, serta kelancaran pencairan dana oleh lembaga perbankan.
+                    </p>
+                </div>
+            </div>
+
+            <!-- LKPD 3 -->
+            <div class="soft-card p-6 sm:p-8 border-2 border-royal-600 shadow-xl space-y-6">
+                <div class="border-b border-slate-200 pb-4 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
+                    <div>
+                        <span class="bg-emerald-100 text-emerald-900 text-xs font-bold px-2.5 py-1 rounded">✍️ LEMBAR KERJA PESERTA DIDIK (LKPD 3)</span>
+                        <h3 class="text-xl font-bold text-navy-900 mt-1">Kemiskinan dan Fintech Lending</h3>
+                    </div>
+                    <a href="https://keuangan.kontan.co.id/news/pembiayaan-fintech-lending-tembus-rp-10694-triliun-per-agustus-2026" target="_blank" class="text-xs text-royal-600 font-bold hover:underline flex items-center">
+                        <i class="fa-solid fa-link mr-1"></i> Rujukan Artikel Kontan Fintech
+                    </a>
+                </div>
+
+                <div class="space-y-4 text-xs">
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+                        <h4 class="font-bold text-navy-900 text-sm">Soal 1 [C2]: Jelaskan mengapa tingkat kemiskinan di perdesaan (10,67%) lebih tinggi dibanding perkotaan (6,34%).</h4>
+                        <textarea class="w-full p-2.5 border rounded-xl bg-white outline-none focus:ring-2 focus:ring-royal-600" rows="3" placeholder="Tuliskan jawaban analisismu di sini..."></textarea>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+                        <h4 class="font-bold text-navy-900 text-sm">Soal 2 [C5]: Sebutkan 3 keterbatasan Fintech Lending berdasarkan data kredit macet TWP90 (4,73%) dan kelompok usia produktif (48,22%).</h4>
+                        <textarea class="w-full p-2.5 border rounded-xl bg-white outline-none focus:ring-2 focus:ring-royal-600" rows="3" placeholder="Tuliskan analisis 3 keterbatasan Fintech..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Video Link 3 -->
+                <div class="bg-navy-900 text-white p-4 rounded-2xl flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <i class="fa-brands fa-youtube text-red-500 text-3xl"></i>
+                        <div>
+                            <div class="font-bold text-xs">Video Pembelajaran Pertemuan 3</div>
+                            <div class="text-[11px] text-slate-300">Garis Kemiskinan BPS & Ekonomi Digital</div>
+                        </div>
+                    </div>
+                    <a href="https://www.youtube.com/results?search_query=garis+kemiskinan+bps+dan+ekonomi+digital" target="_blank" class="bg-red-600 hover:bg-red-700 text-white font-bold px-3 py-1.5 rounded-lg text-xs">
+                        Tonton Video YouTube <i class="fa-solid fa-external-link ml-1"></i>
+                    </a>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ================= TAB 7: RANGKUMAN MODUL ================= -->
+        <section id="tab-rangkuman" class="tab-content hidden space-y-8">
+            <div class="soft-card p-6 sm:p-8 space-y-6">
+                <div class="border-b border-slate-200 pb-4">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-900 flex items-center">
+                        <i class="fa-solid fa-list-check text-gold-500 mr-3"></i>
+                        Rangkuman Pembelajaran Modul
+                    </h2>
+                    <p class="text-slate-600 text-xs mt-1">Intisari poin penting dari Pertemuan 1, Pertemuan 2, dan Pertemuan 3.</p>
+                </div>
+
+                <div class="space-y-5 text-xs text-slate-700">
+                    <div class="p-5 bg-blue-50/80 rounded-2xl border border-blue-200 space-y-2">
+                        <h3 class="font-bold text-blue-950 text-sm flex items-center">
+                            <span class="bg-royal-600 text-white px-2 py-0.5 rounded text-[10px] mr-2">P-1</span>
+                            Pendapatan Nasional
+                        </h3>
+                        <ul class="list-disc list-inside space-y-1.5 leading-relaxed">
+                            <li>PDB menghitung nilai barang/jasa akhir berdasarkan lokasi produksi di dalam wilayah negara, sedangkan PNB berdasarkan kepemilikan faktor produksi warga negara (PNB = PDB + PFN).</li>
+                            <li>Pendapatan nasional dihitung melalui 3 pendekatan: Produksi (Nilai Tambah), Pendapatan (Upah, Sewa, Bunga, Laba), dan Pengeluaran (C + I + G + X - M).</li>
+                            <li>Pendapatan per kapita diperoleh dari pembagian PDB dengan jumlah penduduk untuk melihat rata-rata kemampuan ekonomi, namun tidak mencerminkan pemerataan distribusi.</li>
+                        </ul>
+                    </div>
+
+                    <div class="p-5 bg-amber-50/80 rounded-2xl border border-amber-200 space-y-2">
+                        <h3 class="font-bold text-amber-950 text-sm flex items-center">
+                            <span class="bg-amber-600 text-white px-2 py-0.5 rounded text-[10px] mr-2">P-2</span>
+                            Pertumbuhan Ekonomi dan Ketimpangan
+                        </h3>
+                        <ul class="list-disc list-inside space-y-1.5 leading-relaxed">
+                            <li>Pertumbuhan ekonomi diukur berdasarkan persentase perubahan PDB Riil (Harga Konstan) dari satu periode ke periode berikutnya.</li>
+                            <li>Pertumbuhan ekonomi berfokus secara kuantitatif pada jumlah produksi, sedangkan pembangunan ekonomi mencakup perubahan kualitas hidup, kesehatan, pendidikan, dan pemerataan.</li>
+                            <li>Kurva Lorenz menggambarkan ketimpangan secara visual, sementara Rasio Gini merangkumnya dalam angka 0 (merata sempurna) hingga 1 (sangat timpang).</li>
+                        </ul>
+                    </div>
+
+                    <div class="p-5 bg-emerald-50/80 rounded-2xl border border-emerald-200 space-y-2">
+                        <h3 class="font-bold text-emerald-950 text-sm flex items-center">
+                            <span class="bg-emerald-600 text-white px-2 py-0.5 rounded text-[10px] mr-2">P-3</span>
+                            Kemiskinan dan Ekonomi Digital
+                        </h3>
+                        <ul class="list-disc list-inside space-y-1.5 leading-relaxed">
+                            <li>Garis Kemiskinan BPS dihitung dari penjumlahan Garis Kemiskinan Makanan (74,70%) dan Non-Makanan.</li>
+                            <li>Faktor penyebab kemiskinan meliputi minimnya lapangan kerja, pendidikan rendah, keterbatasan aset, akses infrastruktur minim, ketimpangan kesempatan, dan guncangan ekonomi.</li>
+                            <li>Ekonomi digital (QRIS & Fintech Lending) membuka kesempatan transaksi dan permodalan UMKM, namun membutuhkan literasi keuangan dan perlindungan konsumen agar terhindar dari jerat utang.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 8: EVALUASI LENGKAP ================= -->
+        <section id="tab-evaluasi" class="tab-content hidden space-y-8">
+            <div class="soft-card p-6 sm:p-8 space-y-8">
+                <div class="border-b border-slate-200 pb-4 flex flex-col sm:flex-row justify-between sm:items-center gap-3">
+                    <div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-900 flex items-center">
+                            <i class="fa-solid fa-pen-to-square text-amber-500 mr-3"></i>
+                            Evaluasi Akhir Modul
+                        </h2>
+                        <p class="text-slate-600 text-xs mt-1">Kerjakan 10 Soal Pilihan Ganda & 5 Soal Esai secara mandiri sesuai modul.</p>
+                    </div>
+                    <div id="quizScoreBadge" class="hidden bg-gold-500 text-navy-900 font-black text-base px-4 py-2 rounded-xl shadow">
+                        Skor PG: 0 / 40
+                    </div>
+                </div>
+
+                <!-- Bagian A: 10 Soal PG -->
+                <div class="space-y-6">
+                    <h3 class="text-base font-extrabold text-royal-600 border-b pb-2">Bagian A. Pilihan Ganda (10 Soal - Skor Maksimal 40)</h3>
+                    <div id="pgContainer" class="space-y-6"></div>
+
+                    <button onclick="submitQuiz()" class="w-full bg-gold-500 hover:bg-gold-400 text-navy-900 font-black py-3.5 rounded-2xl text-xs uppercase tracking-wider shadow-lg transition">
+                        Submit & Periksa Jawaban Pilihan Ganda
+                    </button>
+                </div>
+
+                <!-- Bagian B: 5 Soal Esai -->
+                <div class="mt-12 space-y-6 border-t border-slate-200 pt-8">
+                    <h3 class="text-base font-extrabold text-royal-600 border-b pb-2">Bagian B. Soal Esai (5 Soal - Skor Maksimal 60)</h3>
+                    <div id="essayContainer" class="space-y-6 text-xs"></div>
+
+                    <button onclick="toggleEssayAnswers()" class="bg-navy-900 hover:bg-navy-800 text-white font-bold px-6 py-3 rounded-xl text-xs transition">
+                        <i class="fa-solid fa-key mr-2"></i> Tampilkan / Sembunyikan Kunci & Rubrik Esai
+                    </button>
+                    <div id="essayAnswersBox" class="hidden p-4 bg-navy-900 text-slate-200 rounded-2xl text-xs space-y-3 font-mono">
+                        <div class="text-amber-400 font-bold border-b border-slate-700 pb-2">KUNCI & RUBRIK PENSKORAN ESAI:</div>
+                        <p><strong>Soal 1:</strong> Pertumbuhan = Kuantitatif PDB, Pembangunan = Kualitatif + Kemiskinan + Pemerataan. (Skor 10)</p>
+                        <p><strong>Soal 2:</strong> (a) Laju g = 5%. (b) PDB Per Kapita = Rp11.625.000/tahun (~Rp968.750/bulan). (Skor 12)</p>
+                        <p><strong>Soal 3:</strong> (a) Nilai Tambah = Rp20 Juta. (b) Pendekatan Pendapatan. (c) PDB = Rp1.280 Triliun. (Skor 12)</p>
+                        <p><strong>Soal 4:</strong> Provinsi B lebih merata (Gini 0,30 vs 0,45). Pertumbuhan tinggi belum tentu merata. (Skor 13)</p>
+                        <p><strong>Soal 5:</strong> Pernyataan terlalu optimistis. Digitalisasi adalah alat, butuh perbaikan jaringan, literasi, dan pencairan dana. (Skor 13)</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= TAB 9: REFLEKSI ================= -->
+        <section id="tab-refleksi" class="tab-content hidden space-y-8">
+            <div class="soft-card p-6 sm:p-8 space-y-6">
+                <div class="border-b border-slate-200 pb-4">
+                    <h2 class="text-2xl font-bold text-navy-900 flex items-center">
+                        <i class="fa-solid fa-user-check text-royal-600 mr-3"></i> Refleksi Penilaian Diri
+                    </h2>
+                    <p class="text-xs text-slate-600 mt-1">Beri tanda centang pada kolom kemampuan yang telah kamu pahami setelah mempelajari modul ini.</p>
+                </div>
+
+                <div class="space-y-3 text-xs">
+                    <div class="p-3.5 bg-slate-50 rounded-xl flex justify-between items-center border border-slate-200">
+                        <span>Membedakan PDB, PNB, dan pendapatan per kapita</span>
+                        <input type="checkbox" class="w-5 h-5 accent-royal-600 cursor-pointer">
+                    </div>
+                    <div class="p-3.5 bg-slate-50 rounded-xl flex justify-between items-center border border-slate-200">
+                        <span>Menghitung laju pertumbuhan ekonomi PDB Riil</span>
+                        <input type="checkbox" class="w-5 h-5 accent-royal-600 cursor-pointer">
+                    </div>
+                    <div class="p-3.5 bg-slate-50 rounded-xl flex justify-between items-center border border-slate-200">
+                        <span>Menjelaskan fungsi Kurva Lorenz & Rasio Gini</span>
+                        <input type="checkbox" class="w-5 h-5 accent-royal-600 cursor-pointer">
+                    </div>
+                    <div class="p-3.5 bg-slate-50 rounded-xl flex justify-between items-center border border-slate-200">
+                        <span>Menjelaskan Garis Kemiskinan BPS & Keterbatasan Fintech Digital</span>
+                        <input type="checkbox" class="w-5 h-5 accent-royal-600 cursor-pointer">
+                    </div>
+                </div>
+
+                <div class="space-y-3 pt-4 border-t border-slate-200 text-xs">
+                    <h3 class="font-bold text-navy-900 text-sm">Pertanyaan Reflektif Mandiri:</h3>
+                    <div>
+                        <label class="block mb-1 text-slate-700">1. Konsep mana yang paling mengubah cara pandangmu terhadap perekonomian?</label>
+                        <textarea class="w-full p-2.5 border rounded-xl bg-slate-50 outline-none focus:ring-2 focus:ring-royal-600" rows="2" placeholder="Tuliskan di sini..."></textarea>
+                    </div>
+                    <div>
+                        <label class="block mb-1 text-slate-700">2. Sebagai pengguna QRIS/Pinjaman Daring, perilaku bijak apa yang akan kamu terapkan?</label>
+                        <textarea class="w-full p-2.5 border rounded-xl bg-slate-50 outline-none focus:ring-2 focus:ring-royal-600" rows="2" placeholder="Tuliskan di sini..."></textarea>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 10: GLOSARIUM TERPISAH ================= -->
+        <section id="tab-glosarium" class="tab-content hidden space-y-8">
+            <div class="soft-card p-6 sm:p-8 space-y-6">
+                <div class="flex flex-col sm:flex-row justify-between sm:items-center border-b border-slate-200 pb-4 gap-3">
+                    <div>
+                        <h2 class="text-2xl font-bold text-navy-900 flex items-center">
+                            <i class="fa-solid fa-book text-amber-500 mr-3"></i> Glosarium Istilah Ekonomi
+                        </h2>
+                        <p class="text-xs text-slate-600 mt-1">Daftar definisi istilah penting yang digunakan dalam e-modul.</p>
+                    </div>
+                    <input type="text" id="glosariumSearch" onkeyup="filterGlosarium()" placeholder="Cari istilah..." class="p-2.5 text-xs border border-slate-300 rounded-xl w-full sm:w-64 focus:ring-2 focus:ring-royal-600 outline-none">
+                </div>
+
+                <div id="glosariumList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 glos-item">
+                        <strong class="text-royal-600 block text-sm mb-1">Balas Jasa Faktor Produksi</strong>
+                        <span class="text-slate-600">Penghasilan berupa upah, sewa, bunga, dan laba bagi pemilik faktor produksi.</span>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 glos-item">
+                        <strong class="text-royal-600 block text-sm mb-1">E-Commerce</strong>
+                        <span class="text-slate-600">Jual beli barang atau jasa melalui jaringan elektronik/internet.</span>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 glos-item">
+                        <strong class="text-royal-600 block text-sm mb-1">Fintech Lending (Pindar)</strong>
+                        <span class="text-slate-600">Layanan pinjam-meminjam uang berbasis aplikasi/platform digital.</span>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 glos-item">
+                        <strong class="text-royal-600 block text-sm mb-1">Garis Kemiskinan</strong>
+                        <span class="text-slate-600">Batas pengeluaran minimum per kapita per bulan untuk makanan dan non-makanan.</span>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 glos-item">
+                        <strong class="text-royal-600 block text-sm mb-1">Kurva Lorenz</strong>
+                        <span class="text-slate-600">Kurva yang menggambarkan tingkat pemerataan distribusi pendapatan masyarakat.</span>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 glos-item">
+                        <strong class="text-royal-600 block text-sm mb-1">PDB (Produk Domestik Bruto)</strong>
+                        <span class="text-slate-600">Nilai barang/jasa akhir yang diproduksi di wilayah negara dalam periode tertentu.</span>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 glos-item">
+                        <strong class="text-royal-600 block text-sm mb-1">PNB (Produk Nasional Bruto)</strong>
+                        <span class="text-slate-600">Nilai produksi milik warga negara (PNB = PDB + Pendapatan Faktor Neto).</span>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 glos-item">
+                        <strong class="text-royal-600 block text-sm mb-1">QRIS</strong>
+                        <span class="text-slate-600">Standar Kode QR Pembayaran Indonesia untuk transaksi non-tunai.</span>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 glos-item">
+                        <strong class="text-royal-600 block text-sm mb-1">Rasio Gini</strong>
+                        <span class="text-slate-600">Indikator ketimpangan distribusi pendapatan bernilai 0 (merata) hingga 1 (timpang).</span>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 glos-item">
+                        <strong class="text-royal-600 block text-sm mb-1">TWP90</strong>
+                        <span class="text-slate-600">Tingkat wanprestasi 90 hari, ukuran tingkat kredit macet pada Fintech Lending.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 11: DAFTAR PUSTAKA ================= -->
+        <section id="tab-pustaka" class="tab-content hidden space-y-8">
+            <div class="soft-card p-6 sm:p-8 space-y-6">
+                <div class="border-b border-slate-200 pb-4">
+                    <h2 class="text-2xl font-bold text-navy-900 flex items-center">
+                        <i class="fa-solid fa-bookmark text-royal-600 mr-3"></i> Daftar Pustaka
+                    </h2>
+                    <p class="text-xs text-slate-600 mt-1">Rujukan resmi yang digunakan dalam penyusunan e-modul ini.</p>
+                </div>
+
+                <ul class="space-y-3 text-xs text-slate-700 leading-relaxed list-disc list-inside">
+                    <li><strong>Nurjanah, A. & Fitriani, Y. (2024).</strong> <em>Ekonomi untuk SMA/MA Kelas XI (Edisi Revisi)</em>, Bab I. Kemendikbudristek.</li>
+                    <li>Badan Pusat Statistik. (2025). <em>Statistik E-Commerce 2023</em>. Jakarta: BPS.</li>
+                    <li>Bank Indonesia. (2025). <em>Informasi Perkembangan QRIS Semester I 2025</em>. Bank Indonesia.</li>
+                    <li>Dorimulu, P. (2026, 5 Agustus). <em>Ekonomi Tumbuh 5,29%, Angka Pengangguran & Kemiskinan Turun, Tapi Ketimpangan Membesar</em>. Investortrust.id.</li>
+                    <li>Mankiw, N. G. (2018). <em>Principles of Economics</em> (8th ed.). Cengage Learning.</li>
+                    <li>Otoritas Jasa Keuangan. (2025). <em>Laporan Perkembangan Literasi & Inklusi Keuangan Digital</em>. Jakarta: OJK.</li>
+                    <li>Sukirno, S. (2012). <em>Makroekonomi: Teori Pengantar</em> (Edisi Ketiga). Rajawali Pers.</li>
+                    <li>Todaro, M. P., & Smith, S. C. (2015). <em>Economic Development</em> (12th ed.). Pearson.</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-navy-900 text-white border-t border-navy-800 py-8 mt-12 text-center text-xs text-slate-400">
+        <div class="max-w-7xl mx-auto px-4 space-y-2">
+            <p class="font-semibold text-slate-300">E-Modul Interaktif Ekonomi Kelas XI · Pertumbuhan Ekonomi dan Kemiskinan</p>
+            <p class="text-slate-400">Disusun oleh: Nia Oktavia · Windhy Febrian Putri · Indi Khofifah H.</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            const target = document.getElementById('tab-' + tabId);
+            if (target) target.classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('bg-royal-600', 'font-bold'));
+            const activeBtn = document.getElementById('btn-' + tabId);
+            if (activeBtn) activeBtn.classList.add('bg-royal-600', 'font-bold');
+
+            document.getElementById('mobileMenu').classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            if (tabId === 'pertemuan2') {
+                renderLorenzCurve(0.38);
+            }
+        }
+
+        document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+
+        function calculatePerCapita() {
+            const pdb = parseFloat(document.getElementById('calcPdb').value);
+            const pop = parseFloat(document.getElementById('calcPop').value);
+            if (pdb && pop) {
+                const perYear = (pdb * 1e12) / (pop * 1e6);
+                const perMonth = perYear / 12;
+                document.getElementById('calcResult').innerText = 
+                    `Hasil PDB per Kapita: Rp ${Math.round(perYear).toLocaleString('id-ID')} / tahun (~ Rp ${Math.round(perMonth).toLocaleString('id-ID')} / bulan)`;
+            }
+        }
+
+        function renderLorenzCurve(inequality) {
+            const canvas = document.getElementById('lorenzCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width;
+            const h = canvas.height;
+            const pad = 35;
+
+            ctx.clearRect(0, 0, w, h);
+
+            // Axes
+            ctx.beginPath();
+            ctx.strokeStyle = '#475569';
+            ctx.lineWidth = 2;
+            ctx.moveTo(pad, h - pad);
+            ctx.lineTo(w - pad, h - pad);
+            ctx.lineTo(w - pad, pad);
+            ctx.stroke();
+
+            // Diagonal Equality
+            ctx.beginPath();
+            ctx.setLineDash([4, 4]);
+            ctx.strokeStyle = '#10b981';
+            ctx.lineWidth = 2;
+            ctx.moveTo(pad, h - pad);
+            ctx.lineTo(w - pad, pad);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Curve Lorenz
+            ctx.beginPath();
+            ctx.strokeStyle = '#f59e0b';
+            ctx.lineWidth = 3;
+            ctx.moveTo(pad, h - pad);
+
+            for (let i = 0; i <= 1; i += 0.05) {
+                const x = pad + i * (w - 2 * pad);
+                const yVal = Math.pow(i, 1 + inequality * 2.5);
+                const y = (h - pad) - yVal * (h - 2 * pad);
+                ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+
+            // Fill Area A
+            ctx.beginPath();
+            ctx.fillStyle = 'rgba(0, 86, 179, 0.2)';
+            ctx.moveTo(pad, h - pad);
+            ctx.lineTo(w - pad, pad);
+            for (let i = 1; i >= 0; i -= 0.05) {
+                const x = pad + i * (w - 2 * pad);
+                const yVal = Math.pow(i, 1 + inequality * 2.5);
+                const y = (h - pad) - yVal * (h - 2 * pad);
+                ctx.lineTo(x, y);
+            }
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        document.getElementById('inequalitySlider')?.addEventListener('input', function(e) {
+            const val = parseFloat(e.target.value);
+            document.getElementById('giniDisplay').innerText = `Rasio Gini: ${val.toFixed(2)}`;
+            renderLorenzCurve(val);
+        });
+
+        function checkLKPD1() {
+            const q1 = parseFloat(document.getElementById('lkpd1_q1_ans').value);
+            const q2 = parseFloat(document.getElementById('lkpd1_q2_ans').value);
+            const fb = document.getElementById('lkpd1Feedback');
+            fb.classList.remove('hidden');
+
+            if (Math.abs(q1 - 6975000) < 50000 && Math.abs(q2 - 284.6) < 5) {
+                fb.className = 'p-3 rounded-xl text-xs font-bold bg-emerald-100 text-emerald-800';
+                fb.innerText = 'Jawaban LKPD 1 Tepat! PDB per kapita ~ Rp6,97 Juta/bulan dan Penduduk ~ 284,6 Juta Jiwa.';
+            } else {
+                fb.className = 'p-3 rounded-xl text-xs font-bold bg-rose-100 text-rose-800';
+                fb.innerText = 'Jawaban belum tepat. Periksa kembali hitunganmu (Kunci: Rp6.975.000 & 284,6 Juta Jiwa).';
+            }
+        }
+
+        function checkLKPD2() {
+            const q1 = parseFloat(document.getElementById('lkpd2_q1_ans').value);
+            const q2 = parseFloat(document.getElementById('lkpd2_q2_ans').value);
+            const fb = document.getElementById('lkpd2Feedback');
+            fb.classList.remove('hidden');
+
+            if (Math.abs(q1 - 0.005) < 0.002 && Math.abs(q2 - 1.68) < 0.1) {
+                fb.className = 'p-3 rounded-xl text-xs font-bold bg-emerald-100 text-emerald-800';
+                fb.innerText = 'Jawaban LKPD 2 Benar! Perubahan Gini = +0,005 dan Perbandingan Kemiskinan = 1,68 kali lipat.';
+            } else {
+                fb.className = 'p-3 rounded-xl text-xs font-bold bg-rose-100 text-rose-800';
+                fb.innerText = 'Jawaban belum tepat. Periksa kembali hitunganmu (Kunci: Perubahan = 0,005, Perbandingan = 1,68 kali).';
+            }
+        }
+
+        const pgData = [
+            {
+                q: "1. [C2] Produk Domestik Bruto (PDB) suatu negara dihitung berdasarkan ...",
+                opts: [
+                    "A. Nilai barang dan jasa akhir yang diproduksi di dalam wilayah negara tanpa memandang kewarganegaraan pemilik faktor produksi",
+                    "B. Nilai barang dan jasa yang dihasilkan seluruh warga negara di mana pun berada",
+                    "C. Jumlah seluruh transaksi barang setengah jadi",
+                    "D. Rata-rata pendapatan seluruh penduduk"
+                ],
+                ans: 0,
+                exp: "PDB menekankan LOKASI PRODUKSI di dalam wilayah negara."
+            },
+            {
+                q: "2. [C2] Jika pendapatan faktor dari luar negeri Rp40 triliun dan dibayarkan ke asing Rp90 triliun, maka ...",
+                opts: [
+                    "A. PNB lebih besar dari PDB",
+                    "B. PNB sama dengan PDB",
+                    "C. PNB lebih kecil daripada PDB karena PFN bernilai negatif (-Rp50 triliun)",
+                    "D. PNB tidak dapat dihitung"
+                ],
+                ans: 2,
+                exp: "PFN = 40 - 90 = -50 triliun. PNB = PDB + PFN, sehingga PNB < PDB."
+            },
+            {
+                q: "3. [C3] Suatu negara memiliki PDB Rp4.200 triliun dan PFN -Rp150 triliun. PNB negara tersebut adalah ...",
+                opts: ["A. Rp4.350 triliun", "B. Rp4.200 triliun", "C. Rp4.150 triliun", "D. Rp4.050 triliun"],
+                ans: 3,
+                exp: "PNB = 4.200 + (-150) = Rp4.050 triliun."
+            },
+            {
+                q: "4. [C3] PDB Rp1.500 triliun dengan penduduk 250 juta jiwa. PDB per kapita per tahun adalah ...",
+                opts: ["A. Rp600.000", "B. Rp6.000.000", "C. Rp60.000.000", "D. Rp375.000.000"],
+                ans: 1,
+                exp: "Rp1.500 Triliun / 250 Juta Jiwa = Rp6.000.000."
+            },
+            {
+                q: "5. [C3] Menjumlahkan Konsumsi, Investasi, Pengeluaran Pemerintah, dan Ekspor Neto menggunakan pendekatan ...",
+                opts: ["A. Produksi", "B. Pendapatan", "C. Pengeluaran", "D. Per Kapita"],
+                ans: 2,
+                exp: "Rumus PDB = C + I + G + (X - M) adalah pendekatan Pengeluaran."
+            },
+            {
+                q: "6. [C3] PDB riil 2024 = Rp12.000 triliun dan 2025 = Rp12.600 triliun. Laju pertumbuhan ekonomi 2025 adalah ...",
+                opts: ["A. 4%", "B. 5%", "C. 6%", "D. 12%"],
+                ans: 1,
+                exp: "Laju g = (12.600 - 12.000) / 12.000 x 100% = 5%."
+            },
+            {
+                q: "7. [C2] Kurva Lorenz yang semakin jauh bergeser dari garis pemerataan diagonal menunjukkan ...",
+                opts: ["A. Distribusi pendapatan semakin merata", "B. Penduduk miskin pasti berkurang", "C. Pertumbuhan ekonomi pasti turun", "D. Distribusi pendapatan semakin timpang"],
+                ans: 3,
+                exp: "Semakin melengkung menjauhi diagonal, tingkat ketimpangan semakin tinggi."
+            },
+            {
+                q: "8. [C4] Data: Pertumbuhan ekonomi naik dari 5,0% ke 5,3%, namun Rasio Gini naik dari 0,35 ke 0,41. Kesimpulannya ...",
+                opts: [
+                    "A. Pertumbuhan ekonomi meningkat, tetapi ketimpangan melebar dari kategori rendah ke sedang",
+                    "B. Kesejahteraan masyarakat pasti makin merata",
+                    "C. Ketimpangan menurun",
+                    "D. Data tidak berhubungan"
+                ],
+                ans: 0,
+                exp: "Kenaikan pertumbuhan belum tentu otomatis diikuti oleh pemerataan pendapatan."
+            },
+            {
+                q: "9. [C4] Garis Kemiskinan Rp669.235/bulan. Keluarga A (4 orang, pengeluaran Rp2.800.000) dan Keluarga B (5 orang, pengeluaran Rp3.000.000). Analisis yang tepat:",
+                opts: [
+                    "A. Keduanya tidak miskin",
+                    "B. Keduanya miskin",
+                    "C. Keluarga B miskin (Rp600.000/kapita), Keluarga A tidak miskin (Rp700.000/kapita)",
+                    "D. Keluarga A miskin"
+                ],
+                ans: 2,
+                exp: "Keluarga A: 2,8jt/4 = 700rb (>GK, tidak miskin). B: 3jt/5 = 600rb (<GK, miskin)."
+            },
+            {
+                q: "10. [C5] Penilaian yang paling tepat terkait penggunaan Fintech Lending bagi pelaku UMKM adalah ...",
+                opts: [
+                    "A. Fintech lending pasti mengentaskan kemiskinan",
+                    "B. Fintech lending membantu akses permodalan, namun perlu memperhatikan beban biaya, legalitas, dan literasi keuangan",
+                    "C. Fintech lending harus ditolak seluruhnya",
+                    "D. Fintech lending tidak relevan untuk UMKM"
+                ],
+                ans: 1,
+                exp: "Fintech membuka akses modal namun berisiko jika tidak diimbangi literasi dan kemampuan bayar."
+            }
+        ];
+
+        function renderPG() {
+            const container = document.getElementById('pgContainer');
+            if (!container) return;
+            container.innerHTML = '';
+
+            pgData.forEach((q, idx) => {
+                let optsHtml = '';
+                q.opts.forEach((opt, oIdx) => {
+                    optsHtml += `
+                        <label class="flex items-start space-x-2 p-2 rounded-lg hover:bg-slate-100 cursor-pointer">
+                            <input type="radio" name="pg_${idx}" value="${oIdx}" class="mt-0.5 accent-royal-600">
+                            <span>${opt}</span>
+                        </label>
+                    `;
+                });
+
+                container.innerHTML += `
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 text-xs space-y-2">
+                        <div class="font-bold text-navy-900 text-sm">${q.q}</div>
+                        <div class="space-y-1">${optsHtml}</div>
+                        <div id="pgExp_${idx}" class="hidden p-2.5 rounded-xl bg-blue-50 text-blue-900 font-medium mt-2">
+                            💡 <strong>Pembahasan:</strong> ${q.exp}
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            pgData.forEach((q, idx) => {
+                const selected = document.querySelector(`input[name="pg_${idx}"]:checked`);
+                const expEl = document.getElementById(`pgExp_${idx}`);
+                expEl.classList.remove('hidden');
+
+                if (selected && parseInt(selected.value) === q.ans) {
+                    score += 4;
+                }
+            });
+
+            const badge = document.getElementById('quizScoreBadge');
+            badge.classList.remove('hidden');
+            badge.innerText = `Skor PG: ${score} / 40`;
+            alert(`Nilai Pilihan Ganda Kamu: ${score} / 40`);
+        }
+
+        const essayData = [
+            { title: "Soal 1 [C2] (Skor Maksimal 10)", text: "Jelaskan perbedaan pertumbuhan ekonomi dan pembangunan ekonomi. Berikan satu contoh daerah yang mengalami pertumbuhan tinggi tetapi pembangunannya belum baik." },
+            { title: "Soal 2 [C3] (Skor Maksimal 12)", text: "Suatu negara memiliki PDB riil Rp3.100 triliun (2025) dan Rp3.255 triliun (2026) dengan penduduk 280 juta jiwa. Hitung laju pertumbuhan ekonomi dan PDB per kapita per bulan." },
+            { title: "Soal 3 [C3] (Skor Maksimal 12)", text: "Hitung nilai tambah pabrik roti (Output Rp50jt, Input Rp30jt) dan PDB pengeluaran jika C=800T, I=250T, G=200T, X=150T, M=120T." },
+            { title: "Soal 4 [C4] (Skor Maksimal 13)", text: "Bandingkan Provinsi A (Pertumbuhan 6%, Gini 0,45) dan Provinsi B (Pertumbuhan 4%, Gini 0,30). Mana yang lebih merata?" },
+            { title: "Soal 5 [C5] (Skor Maksimal 13)", text: "Nilailah pernyataan kepala daerah yang mengklaim QRIS dan pinjaman daring dapat menghilangkan kemiskinan dalam 2 tahun." }
+        ];
+
+        function renderEssay() {
+            const container = document.getElementById('essayContainer');
+            if (!container) return;
+            container.innerHTML = '';
+
+            essayData.forEach((e) => {
+                container.innerHTML += `
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
+                        <div class="font-bold text-navy-900 text-sm">${e.title}</div>
+                        <p class="text-slate-700">${e.text}</p>
+                        <textarea class="w-full p-2.5 border rounded-xl bg-white text-xs" rows="3" placeholder="Tuliskan jawaban esai di sini..."></textarea>
+                    </div>
+                `;
+            });
+        }
+
+        function toggleEssayAnswers() {
+            const box = document.getElementById('essayAnswersBox');
+            box.classList.toggle('hidden');
+        }
+
+        function filterGlosarium() {
+            const query = document.getElementById('glosariumSearch').value.toLowerCase();
+            document.querySelectorAll('.glos-item').forEach(item => {
+                const text = item.innerText.toLowerCase();
+                item.style.display = text.includes(query) ? 'block' : 'none';
+            });
+        }
+
+        window.onload = function() {
+            renderPG();
+            renderEssay();
+            renderLorenzCurve(0.38);
+        };
+    </script>
+</body>
+</html>
